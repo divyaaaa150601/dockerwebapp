@@ -1,26 +1,17 @@
-version: "3.9"
-
 services:
   devopsdb:
-    image: shaikmustafa/deepika:db
+    image: divyakoduri/dockerweb:db
     ports:
       - "3306:3306"
-    deploy:
-      replicas: 1
-    networks:
-      - mynetwork
+    volumes:
+      - dbdata:/var/lib/mysql
 
   application:
-    image: shaikmustafa/deepika:app
+    image: divyakoduri/dockerweb:app
     ports:
       - "1111:8080"
-    deploy:
-      replicas: 3
     depends_on:
       - devopsdb
-    networks:
-      - mynetwork
 
-networks:
-  mynetwork:
-    driver: overlay
+volumes:
+  dbdata:
