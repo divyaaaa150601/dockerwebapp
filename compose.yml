@@ -1,3 +1,4 @@
+---
 services:
   devopsdb:
     image: divyakoduri/dockerweb:db
@@ -15,3 +16,4 @@ services:
 
 volumes:
   dbdata:
+  ...
