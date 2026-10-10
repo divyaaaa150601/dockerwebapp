@@ -1,19 +1,26 @@
 ---
 services:
   devopsdb:
-    image: divyakoduri/dockerweb:db
+    image: divyakoduri/dockerwebapp:db
     ports:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
+    networks:
+      - mynetwork
 
   application:
-    image: divyakoduri/dockerweb:app
+    image: divyakoduri/dockerwebapp:app
     ports:
       - "1111:8080"
     depends_on:
       - devopsdb
+    networks:
+      - mynetwork
 
 volumes:
   dbdata:
+networks:
+  mynetwork:
+    driver: overlay
 ...
